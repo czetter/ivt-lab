@@ -7,34 +7,36 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 public class GT4500Test {
-
+  private TorpedoStore mockTSp;
   private GT4500 ship;
 
   @BeforeEach
   public void init(){
-    this.ship = new GT4500();
+    this.mockTSp = mock(TorpedoStore.class);
+    this.ship = new GT4500(this.mockTSp);
   }
 
   @Test
   public void fireTorpedo_Single_Success(){
     // Arrange
+    when(ship.fireTorpedo(FiringMode.SINGLE)).thenReturn(true);
 
     // Act
     boolean result = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
-    assertEquals(true, result);
+    verify(mockTSp,times(1)).fireTorpedo(FiringMode.SINGLE);
   }
 
   @Test
   public void fireTorpedo_All_Success(){
     // Arrange
-
+    when(ship.fireTorpedo(FiringMode.ALL)).thenReturn(true);
     // Act
     boolean result = ship.fireTorpedo(FiringMode.ALL);
 
     // Assert
-    assertEquals(true, result);
+    verify(mockTSp,times(1)).fireTorpedo(FiringMode.ALL);
   }
 
 }
