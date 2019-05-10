@@ -147,7 +147,7 @@ public class GT4500Test {
  }
 
  @Test
- public void fireTorpedo_bothAreEmpty(){
+ public void firebothEmpty2(){
    // Arrange
    when(mockTS2.isEmpty()).thenReturn(true);
    when(mockTS1.fire(1)).thenReturn(true);
@@ -163,6 +163,22 @@ public class GT4500Test {
    assertEquals(false, result2);
 
    verify(mockTS1, times(1)).fire(1);
+   verify(mockTS2, times(0)).fire(1);
+ }
+ public void firebothEmpty6(){
+   // Arrange
+   when(mockTS1.isEmpty()).thenReturn(true);
+   when(mockTS2.isEmpty()).thenReturn(true);
+   when(mockTS1.fire(1)).thenReturn(false);
+   when(mockTS2.fire(1)).thenReturn(false);
+
+   // Act
+   boolean result = ship.fireTorpedo(FiringMode.ALL);
+
+   // Assert
+   assertEquals(false, result);
+
+   verify(mockTS1, times(0)).fire(1);
    verify(mockTS2, times(0)).fire(1);
  }
 
