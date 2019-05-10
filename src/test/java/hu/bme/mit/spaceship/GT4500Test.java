@@ -165,6 +165,7 @@ public class GT4500Test {
    verify(mockTS1, times(1)).fire(1);
    verify(mockTS2, times(0)).fire(1);
  }
+  @Test
  public void firebothEmpty6(){
    // Arrange
    when(mockTS1.isEmpty()).thenReturn(false);
@@ -176,7 +177,7 @@ public class GT4500Test {
    boolean result = ship.fireTorpedo(FiringMode.ALL);
 
    // Assert
-
+assertEquals(true, result);
 
    verify(mockTS1, times(1)).fire(1);
    verify(mockTS2, times(1)).fire(1);
