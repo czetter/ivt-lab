@@ -120,7 +120,7 @@ public class GT4500Test {
     when(mockTS2.fire(1)).thenReturn(true);
 
     // Act
-    boolean result = ship.fireTorpedo(FiringMode.ALL);
+    boolean result = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
     assertEquals(true, result);
