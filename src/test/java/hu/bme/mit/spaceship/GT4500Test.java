@@ -3,6 +3,7 @@ package hu.bme.mit.spaceship;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import FiringMode.java;
 
 import static org.mockito.Mockito.*;
 
@@ -22,10 +23,10 @@ public class GT4500Test {
     when(ship.fireTorpedo(FiringMode.SINGLE)).thenReturn(true);
 
     // Act
-    ship.fireTorpedo(FiringMode.SINGLE);
+    boolean resultsingle = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
-    verify(mockTS,times(1)).fireTorpedo(FiringMode.SINGLE);
+    verify(mockTS).resultsingle;
   }
 
   @Test
@@ -33,10 +34,10 @@ public class GT4500Test {
     // Arrange
     when(ship.fireTorpedo(FiringMode.ALL)).thenReturn(true);
     // Act
-    ship.fireTorpedo(FiringMode.ALL);
+    boolean resultmultiple = ship.fireTorpedo(FiringMode.ALL);
 
     // Assert
-    verify(mockTS,times(1)).fireTorpedo(FiringMode.ALL);
+    verify(mockTS).resultmultiple;
   }
 
 }
