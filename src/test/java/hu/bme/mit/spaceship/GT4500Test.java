@@ -167,19 +167,19 @@ public class GT4500Test {
  }
  public void firebothEmpty6(){
    // Arrange
-   when(mockTS1.isEmpty()).thenReturn(true);
-   when(mockTS2.isEmpty()).thenReturn(true);
-   when(mockTS1.fire(1)).thenReturn(false);
-   when(mockTS2.fire(1)).thenReturn(false);
+   when(mockTS1.isEmpty()).thenReturn(false);
+   when(mockTS2.isEmpty()).thenReturn(false);
+   when(mockTS1.fire(1)).thenReturn(true);
+   when(mockTS2.fire(1)).thenReturn(true);
 
    // Act
    boolean result = ship.fireTorpedo(FiringMode.ALL);
 
    // Assert
-   assertEquals(false, result);
 
-   verify(mockTS1, times(0)).fire(1);
-   verify(mockTS2, times(0)).fire(1);
+
+   verify(mockTS1, times(1)).fire(1);
+   verify(mockTS2, times(1)).fire(1);
  }
 
 }
