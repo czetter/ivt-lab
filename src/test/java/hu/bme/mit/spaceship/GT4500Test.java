@@ -48,4 +48,85 @@ public class GT4500Test {
     verify(mockTS2, times(1)).fire(1);
   }
 
+  //Extra 5 teszt
+  @Test
+  public void firetwice(){
+    // Arrange
+    when(mockTS1.fire(1)).thenReturn(true);
+    when(mockTS2.fire(1)).thenReturn(true);
+
+    // Act
+    boolean result = ship.fireTorpedo(FiringMode.SINGLE);
+    boolean result2 = ship.fireTorpedo(FiringMode.SINGLE);
+
+    verify(mockTS1, times(1)).fire(1);
+    verify(mockTS2, times(1)).fire(1);
+  }
+
+  @Test
+  public void firethreetimes(){
+    // Arrange
+    when(mockTS1.fire(1)).thenReturn(true);
+    when(mockTS2.fire(1)).thenReturn(true);
+
+    // Act
+    boolean result = ship.fireTorpedo(FiringMode.SINGLE);
+    boolean result2 = ship.fireTorpedo(FiringMode.SINGLE);
+    boolean result3 = ship.fireTorpedo(FiringMode.SINGLE);
+
+    verify(mockTS1, times(2)).fire(1);
+    verify(mockTS2, times(1)).fire(1);
+  }
+
+  @Test
+  public void fireEmpty(){
+    // Arrange
+    when(mockTS1.isEmpty()).thenReturn(true);
+    when(mockTS1.fire(1)).thenReturn(true);
+    when(mockTS2.fire(1)).thenReturn(true);
+
+    // Act
+    boolean result = ship.fireTorpedo(FiringMode.SINGLE);
+
+    // Assert
+    assertEquals(true, result);
+
+    verify(mockTS2, times(1)).fire(1);
+  }
+
+  @Test
+  public void firebothEmpty(){
+    // Arrange
+    when(mockTS1.isEmpty()).thenReturn(true);
+    when(mockTS2.isEmpty()).thenReturn(true);
+    when(mockTS1.fire(1)).thenReturn(true);
+    when(mockTS2.fire(1)).thenReturn(true);
+
+    // Act
+    boolean result = ship.fireTorpedo(FiringMode.SINGLE);
+
+    // Assert
+    assertEquals(false, result);
+
+    verify(mockTS1, times(0)).fire(1);
+    verify(mockTS2, times(0)).fire(1);
+  }
+
+  @Test
+  public void fireallEmpty(){
+    // Arrange
+    when(mockTS1.isEmpty()).thenReturn(true);
+    when(mockTS1.fire(1)).thenReturn(true);
+    when(mockTS2.fire(1)).thenReturn(true);
+
+    // Act
+    boolean result = ship.fireTorpedo(FiringMode.ALL);
+
+    // Assert
+    assertEquals(true, result);
+
+    verify(mockTS1, times(0)).fire(1);
+    verify(mockTS2, times(1)).fire(1);
+  }
+
 }
