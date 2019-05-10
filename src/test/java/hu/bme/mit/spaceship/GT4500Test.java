@@ -25,7 +25,7 @@ public class GT4500Test {
     boolean result = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
-    verify(mockTSp,times(1)).fireTorpedo_Single_Success;
+    verify(mockTSp,times(1)).result;
   }
 
   @Test
@@ -36,7 +36,7 @@ public class GT4500Test {
     boolean result = ship.fireTorpedo(FiringMode.ALL);
 
     // Assert
-    verify(mockTSp,times(1)).fireTorpedo_All_Success;
+    verify(mockTSp,times(1)).result;
   }
 
 }
