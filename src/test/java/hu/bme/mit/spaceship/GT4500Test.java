@@ -8,36 +8,45 @@ import FiringMode.java;
 import static org.mockito.Mockito.*;
 
 public class GT4500Test {
-  private TorpedoStore mockTS;
+  private TorpedoStore mockTS1;
+  private TorpedoStore mockTS2;
   private GT4500 ship;
 
   @BeforeEach
   public void init(){
-    this.mockTS = mock(TorpedoStore.class);
-    this.ship = new GT4500(this.mockTS);
+    this.mockTS1 = mock(TorpedoStore.class);
+    this.mockTS2 = mock(TorpedoStore.class);
+    this.ship = new GT4500(this.mockTS1, this.mockTS2);
   }
 
   @Test
   public void fireTorpedo_Single_Success(){
     // Arrange
-    when(ship.fireTorpedo(FiringMode.SINGLE)).thenReturn(true);
+    when(mockTS1.fire(1)).thenReturn(true);
 
     // Act
-    boolean resultsingle = ship.fireTorpedo(FiringMode.SINGLE);
+    boolean result = ship.fireTorpedo(FiringMode.SINGLE);
 
     // Assert
-    verify(mockTS).resultsingle;
+    assertEquals(true, result);
+
+    verify(mockTS1, times(1)).fire(1);
   }
 
   @Test
   public void fireTorpedo_All_Success(){
     // Arrange
-    when(ship.fireTorpedo(FiringMode.ALL)).thenReturn(true);
+    when(mockTS1.fire(1)).thenReturn(true);
+    when(mockTS2.fire(1)).thenReturn(true);
+
     // Act
-    boolean resultmultiple = ship.fireTorpedo(FiringMode.ALL);
+    boolean result = ship.fireTorpedo(FiringMode.ALL);
 
     // Assert
-    verify(mockTS).resultmultiple;
+    assertEquals(true, result);
+
+    verify(mockTS1, times(1)).fire(1);
+    verify(mockTS2, times(1)).fire(1);
   }
 
 }
